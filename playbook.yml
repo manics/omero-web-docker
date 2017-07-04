@@ -1,6 +1,26 @@
 - hosts: localhost
+
   roles:
   - role: openmicroscopy.omero-web
+
+  tasks:
+
+  - name: django whitenoise | install
+    become: yes
+    pip:
+      name: whitenoise
+      state: present
+      virtualenv: "{{ omero_web_basedir }}/venv"
+      virtualenv_site_packages: yes
+
+  - name: django whitenoise | enable
+    become: yes
+    copy:
+      content: |
+        config append -- omero.web.middleware '{"index": 0, "class": "whitenoise.middleware.WhiteNoiseMiddleware"}'
+      dest: "{{ omero_web_basedir }}/config/whitenoise.omero"
+      force: yes
+
   vars:
     ice_version: "3.6"
     ice_install_devel: False
