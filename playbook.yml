@@ -26,3 +26,4 @@
     ice_install_devel: False
     omero_web_systemd_setup: False
     omero_web_setup_nginx: False
+    ice_python_wheel: https://github.com/openmicroscopy/zeroc-ice-py-centos7/releases/download/0.0.2/zeroc_ice-3.6.3-cp27-cp27mu-linux_x86_64.whl
